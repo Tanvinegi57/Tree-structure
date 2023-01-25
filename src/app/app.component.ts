@@ -53,6 +53,7 @@ export class AppComponent {
       this.level2.map((level3nodes) => {
         console.log('level3', level3nodes.level3);
       });
+      // this.level3
     }
   }
   openLevel3() {
@@ -69,6 +70,7 @@ export class AppComponent {
         res.forEach((element: any) => {
           console.log(element, '222222');
         });
+
         res.map((res: any) => {
           this.level2 = res.level2;
           console.log(this.level2, 'level 2');
@@ -78,7 +80,7 @@ export class AppComponent {
           console.log(response, 'LEVEL 3 LOOP');
           // console.log(level3Array);
           this.level3 = response.level3;
-          // console.log(this.level3, 'Level 3');
+          console.log(this.level3, 'Level 3');
         });
 
         this.level3.map((resLevel4: any) => {
