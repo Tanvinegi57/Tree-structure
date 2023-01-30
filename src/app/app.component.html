@@ -1,11 +1,9 @@
-<div style="margin-left: 30px">
-  <h1>Tree structure</h1>
-  <br />
-
-  <!-- LEVEL 1 DIV -->
-  <div
-    style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px"
-  >
+<h1>Tree structure</h1>
+<br />
+<!-- ROOT lEVEL DIV COMPANY -->
+<div class="display-6 m-1" *ngFor="let data of root">
+  <section>
+    <!-- COMPANY + ICON -->
     <button
       class="btn btn-sm"
       style="
@@ -14,158 +12,227 @@
         color: blue;
         padding: 5px 10px;
       "
-      (click)="openDiv1()"
+      (click)="showRootLevel(data.id)"
     >
       <fa-icon [icon]="faPlus"></fa-icon>
     </button>
-
-    <h4>Company</h4>
-    <div style="display: flex; gap: 15px; margin-left: 10px">
-      <button type="button" class="btn btn-secondary btn-sm">+ Add Rule</button>
-      <button type="button" class="btn btn-secondary btn-sm">
-        + Add Conclusion
+    <span>
+      <span class="ms-2">{{ data.title }}</span>
+    </span>
+    <span class="button">
+      <button
+        class="btn btn-secondary btn-sm ms-2"
+        (click)="openAddTextField(data.id, 'Save')"
+      >
+        + Add Rule
       </button>
-      <button style="border: none">
+      <button
+        style="border: none"
+        class="ms-2 btn btn-lg"
+        (click)="openAddTextField(data.id, 'Update')"
+      >
         <fa-icon [icon]="faPenIcon"></fa-icon>
       </button>
-      <button style="border: none">
+      <button style="border: none" class="ms-1 btn btn-lg">
         <fa-icon [icon]="faTimesCrossIcon"></fa-icon>
       </button>
+    </span>
+
+    <!-- ADD RULE TO ROOT LEVEL THAT GOES IN LEVEL 1-->
+    <div class="mt-4 ms-5" *ngIf="data.id === rootID">
+      <form [formGroup]="form" *ngIf="textField1">
+        <input
+          style="padding: 10px; font-size: 20px"
+          placeholder="Write a New Rule"
+          type="text"
+          formControlName="title"
+        />
+        <button
+          class="btn btn-secondary btn-lg ms-2"
+          (click)="saveLevel1Data(data.id)"
+        >
+          {{ onAction }}
+        </button>
+        <button class="btn btn-danger btn-lg ms-2" (click)="cancel()">
+          Cancel
+        </button>
+      </form>
     </div>
-  </div>
 
-  <!-- LEVEL 2 DIV -->
-  <div
-    style="
-      align-items: center;
-      gap: 20px;
-      margin-left: 50px;
-      margin-bottom: 20px;
-    "
-    *ngIf="open1"
-  >
-    <div
-      style="display: flex; align-items: center; gap: 20px"
-      *ngFor="let level2data of level2"
-    >
-      <button
-        style="
-          border: 1px solid blue;
-          border-radius: 50px;
-          color: blue;
-          padding: 5px 10px;
-          margin-bottom: 20px;
-        "
-        class="btn btn-sm"
-        (click)="openLevel2(level2data.level2Id)"
-      >
-        <fa-icon [icon]="faPlus"></fa-icon>
-      </button>
+    <!-- LEVEL-1 "SERVICES + ICON" -->
+    <div class="ms-5 mt-3" *ngIf="data.id === rootID">
+      <div class="m-4" *ngIf="open1">
+        <div *ngFor="let data1 of level1">
+          <button
+            class="btn btn-sm"
+            style="
+              border: 1px solid blue;
+              border-radius: 50px;
+              color: blue;
+              padding: 5px 10px;
+            "
+            (click)="showLevel2(data1.id)"
+          >
+            <fa-icon [icon]="faPlus"></fa-icon>
+          </button>
+          <span class="m-2">{{ data1.title }}</span>
 
-      <!-- Service -->
-      <h6>{{ level2data.title }}</h6>
-      <div style="display: flex; gap: 15px; margin-left: 10px">
-        <button type="button" class="btn btn-secondary btn-sm">
-          + Add Rule
-        </button>
-        <button type="button" class="btn btn-secondary btn-sm">
-          + Add Conclusion
-        </button>
-        <button style="border: none">
-          <fa-icon [icon]="faPenIcon"></fa-icon>
-        </button>
-        <button style="border: none">
-          <fa-icon [icon]="faTimesCrossIcon"></fa-icon>
-        </button>
+          <button
+            class="btn btn-secondary btn-sm ms-2"
+            (click)="openAddTextFieldForLevel1(data1.id, 'Save')"
+          >
+            + Add Rule
+          </button>
+          <button type="button" class="btn btn-secondary btn-sm ms-2">
+            + Add Conclusion
+          </button>
+
+          <button
+            style="border: none"
+            class="ms-2 btn btn-lg"
+            (click)="openAddTextFieldForLevel1(data1.id, 'Update')"
+          >
+            <fa-icon [icon]="faPenIcon"></fa-icon>
+          </button>
+          <button style="border: none" class="ms-2 btn btn-lg">
+            <fa-icon [icon]="faTimesCrossIcon"></fa-icon>
+          </button>
+
+          <!-- ADD RULE TO LEVEL-1 THAT GOES IN LEVEL 2-->
+          <div class="mt-4 ms-5" *ngIf="data1.id === Level2Id">
+            <form [formGroup]="form" *ngIf="textField2">
+              <input
+                style="padding: 10px; font-size: 20px"
+                placeholder="Write a New Rule"
+                type="text"
+                formControlName="title"
+              />
+              <button
+                class="btn btn-secondary btn-lg ms-2"
+                (click)="saveLevel2Data(data1.id, data.id)"
+              >
+                {{ onAction }}
+              </button>
+              <button class="btn btn-danger btn-lg ms-2" (click)="cancel1()">
+                Cancel
+              </button>
+            </form>
+          </div>
+
+          <!-- LEVEL-2 "TECHNICAL SERVICES"-->
+          <div class="ms-5 mt-3" *ngIf="data1.id === Level2Id">
+            <div *ngIf="open2">
+              <div class="m-4" *ngFor="let node of level3">
+                <button
+                  class="btn btn-sm"
+                  style="
+                    border: 1px solid blue;
+                    border-radius: 50px;
+                    color: blue;
+                    padding: 5px 10px;
+                  "
+                  (click)="showLevel3(node.id)"
+                >
+                  <fa-icon [icon]="faPlus"></fa-icon>
+                </button>
+
+                <span class="m-2">{{ node.title }}</span>
+                <span class="button">
+                  <button
+                    class="btn btn-secondary btn-sm ms-2"
+                    (click)="openAddTextFieldForLevel2(node.id, 'Save')"
+                  >
+                    + Add Rule
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-sm ms-2">
+                    + Add Conclusion
+                  </button>
+                </span>
+
+                <button
+                  style="border: none"
+                  class="ms-2 btn btn-lg"
+                  (click)="openAddTextFieldForLevel2(node.id, 'Update')"
+                >
+                  <fa-icon [icon]="faPenIcon"></fa-icon>
+                </button>
+                <button style="border: none" class="ms-1 btn btn-lg">
+                  <fa-icon [icon]="faTimesCrossIcon"></fa-icon>
+                </button>
+
+                <!-- ADD RULE TO LEVEL-2 THAT GOES IN LEVEL 3-->
+                <div class="mt-4 ms-5" *ngIf="node.id === Level3Id">
+                  <form [formGroup]="form" *ngIf="textField3">
+                    <input
+                      style="padding: 10px; font-size: 20px"
+                      placeholder="Write a New Rule"
+                      type="text"
+                      formControlName="title"
+                    />
+                    <button
+                      class="btn btn-secondary btn-lg ms-2"
+                      (click)="saveLevel3Data(node.id, data1.id)"
+                    >
+                      {{ onAction }}
+                    </button>
+                    <button
+                      class="btn btn-danger btn-lg ms-2"
+                      (click)="cancel1()"
+                    >
+                      Cancel
+                    </button>
+                  </form>
+                </div>
+
+                <!--END-->
+
+                <!-- LEVEL-3 "DONE" -->
+                <div class="ms-5 mt-3" *ngIf="node.id === Level3Id">
+                  <div *ngIf="open3">
+                    <div class="display-6 m-4" *ngFor="let node of level5">
+                      <button
+                        class="btn btn-sm"
+                        style="
+                          border: 1px solid blue;
+                          border-radius: 50px;
+                          color: blue;
+                          padding: 5px 10px;
+                        "
+                      >
+                        <fa-icon [icon]="faPlus"></fa-icon>
+                      </button>
+
+                      <span class="m-2">{{ node.title }}</span>
+
+                      <span class="button">
+                        <button class="btn btn-secondary btn-sm ms-2">
+                          + Add Rule
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-secondary btn-sm ms-2"
+                        >
+                          + Add Conclusion
+                        </button>
+                      </span>
+                      <button style="border: none" class="ms-2 btn btn-lg">
+                        <fa-icon [icon]="faPenIcon"></fa-icon>
+                      </button>
+                      <button style="border: none" class="ms-1 btn btn-lg">
+                        <fa-icon [icon]="faTimesCrossIcon"></fa-icon>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!-- END-->
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-
-  <!-- LEVEL 3 DIV -->
-  <div
-    style="
-      align-items: center;
-      gap: 20px;
-      margin-left: 100px;
-      margin-bottom: 20px;
-    "
-    *ngIf="open2"
-  >
-    <div
-      *ngFor="let level3Data of level3"
-      style="display: flex; align-items: center; gap: 20px"
-    >
-      <button
-        style="
-          border: 1px solid blue;
-          border-radius: 50px;
-          color: blue;
-          padding: 5px 10px;
-        "
-        class="btn btn-sm"
-        (click)="openLevel3()"
-      >
-        <fa-icon [icon]="faPlus"></fa-icon>
-      </button>
-      <!-- <h6>{{ level3Data.title }}</h6> -->
-      <div style="display: flex; gap: 15px; margin-left: 10px">
-        <button type="button" class="btn btn-secondary btn-sm">
-          + Add Rule
-        </button>
-        <button type="button" class="btn btn-secondary btn-sm">
-          + Add Conclusion
-        </button>
-        <button style="border: none">
-          <fa-icon [icon]="faPenIcon"></fa-icon>
-        </button>
-        <button style="border: none">
-          <fa-icon [icon]="faTimesCrossIcon"></fa-icon>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- LEVEL 4 DIV -->
-  <div
-    style="
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      margin-left: 150px;
-      margin-bottom: 20px;
-    "
-    *ngIf="open3"
-  >
-    <div
-      *ngFor="let level4data of level4"
-      style="display: flex; align-items: center; gap: 20px"
-    >
-      <button
-        style="
-          border: 1px solid blue;
-          border-radius: 50px;
-          color: blue;
-          padding: 5px 10px;
-        "
-        class="btn btn-sm"
-      >
-        <fa-icon [icon]="faPlus"></fa-icon>
-      </button>
-      <!-- <h6>{{ level4data.title }}</h6> -->
-      <div style="display: flex; gap: 15px; margin-left: 10px">
-        <button type="button" class="btn btn-secondary btn-sm">
-          + Add Rule
-        </button>
-        <button type="button" class="btn btn-secondary btn-sm">
-          + Add Conclusion
-        </button>
-        <button style="border: none">
-          <fa-icon [icon]="faPenIcon"></fa-icon>
-        </button>
-        <button style="border: none">
-          <fa-icon [icon]="faTimesCrossIcon"></fa-icon>
-        </button>
-      </div>
-    </div>
-  </div>
+  </section>
 </div>
+
+<br />
+<br />

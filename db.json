@@ -1,53 +1,103 @@
 {
+  "rootLevel": [
+    {
+      "title": "Company",
+      "id": 1
+    },
+    {
+      "title": "Individual",
+      "id": 2
+    }
+  ],
   "level1": [
     {
+      "title": "Services",
+      "rootLevelId": 1,
+      "id": 1
+    },
+    {
+      "title": "Transportation",
+      "rootLevelId": 1,
+      "id": 2
+    },
+    {
+      "id": 3,
+      "title": "Software/Info/Digitized Goods",
+      "rootLevelId": 1
+    },
+    {
+      "id": 4,
+      "title": " Goods",
+      "rootLevelId": 2
+    },
+    {
+      "title": "Test",
+      "rootLevelId": 1,
+      "id": 5
+    }
+  ],
+  "level2": [
+    {
+      "title": "Technical Service",
+      "level1Id": 1,
+      "id": 1
+    },
+    {
+      "id": 2,
+      "title": "Consulting Services",
+      "level1Id": 1
+    },
+    {
+      "id": 3,
+      "title": "Transportation Services",
+      "level1Id": 2
+    },
+    {
+      "id": 4,
+      "title": "Transportation Services 1",
+      "level1Id": 2
+    },
+    {
+      "id": 5,
+      "title": "Software Goods",
+      "level1Id": 3
+    },
+    {
+      "id": 6,
+      "title": "Software Goods",
+      "level1Id": 4
+    },
+    {
+      "title": "tanvi",
+      "level1Id": 1,
+      "id": 7
+    }
+  ],
+  "level3": [
+    {
       "id": 1,
-      "title": "Company",
-      "level2": [
-        {
-          "level2Id": 1,
-          "title": "Services",
-          "level3": [
-            {
-              "level3Id": 1,
-              "title": "Technical Services",
-              "Level4": [
-                {
-                  "level4Id": 1,
-                  "title": "Level4Title"
-                }
-              ]
-            },
-            {
-              "level3Id": 2,
-              "title": "Consulting Services",
-              "Level4": [
-                {
-                  "level4Id": 1,
-                  "title": "Level4Title"
-                }
-              ]
-            }
-          ]
-        },
-
-        {
-          "level2Id": 2,
-          "title": "Transportation",
-          "level3": [
-            {
-              "level3Id": 1,
-              "title": "LEVEL3 TITLE",
-              "Level4": [
-                {
-                  "level4Id": 1,
-                  "title": "Level4Title"
-                }
-              ]
-            }
-          ]
-        }
-      ]
+      "title": "yes, done in India",
+      "level2Id": 1
+    },
+    {
+      "id": 2,
+      "title": "yes, done in Argentina",
+      "level2Id": 2
+    },
+    {
+      "id": 3,
+      "title": "yes, done in USA",
+      "level2Id": 3
+    },
+    {
+      "id": 4,
+      "title": "yes, done in Alaska",
+      "level2Id": 6
+    },
+    {
+      "title": "yes, done in america",
+      "level2Id": 1,
+      "id": 5
     }
   ]
 }
