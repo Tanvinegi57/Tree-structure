@@ -1,7 +1,7 @@
 <h1>Tree structure</h1>
 <br />
 <!-- ROOT lEVEL DIV COMPANY -->
-<div class="display-6 m-1" *ngFor="let data of root">
+<div class="m-1" *ngFor="let data of root">
   <section>
     <!-- COMPANY + ICON -->
     <button
@@ -17,19 +17,19 @@
       <fa-icon [icon]="faPlus"></fa-icon>
     </button>
     <span>
-      <span class="ms-2">{{ data.title }}</span>
+      <span style="font-size: 35px" class="ms-2">{{ data.title }}</span>
     </span>
     <span class="button">
       <button
         class="btn btn-secondary btn-sm ms-2"
-        (click)="openAddTextField(data.id, 'Save')"
+        (click)="openAddTextField(data.id, 'Save', data.title)"
       >
         + Add Rule
       </button>
       <button
         style="border: none"
         class="ms-2 btn btn-lg"
-        (click)="openAddTextField(data.id, 'Update')"
+        (click)="openAddTextField(data.id, 'Update', data.title)"
       >
         <fa-icon [icon]="faPenIcon"></fa-icon>
       </button>
@@ -75,11 +75,11 @@
           >
             <fa-icon [icon]="faPlus"></fa-icon>
           </button>
-          <span class="m-2">{{ data1.title }}</span>
+          <span style="font-size: 35px" class="m-2">{{ data1.title }}</span>
 
           <button
             class="btn btn-secondary btn-sm ms-2"
-            (click)="openAddTextFieldForLevel1(data1.id, 'Save')"
+            (click)="openAddTextFieldForLevel1(data1.id, 'Save', data1.title)"
           >
             + Add Rule
           </button>
@@ -90,7 +90,7 @@
           <button
             style="border: none"
             class="ms-2 btn btn-lg"
-            (click)="openAddTextFieldForLevel1(data1.id, 'Update')"
+            (click)="openAddTextFieldForLevel1(data1.id, 'Update', data1.title)"
           >
             <fa-icon [icon]="faPenIcon"></fa-icon>
           </button>
@@ -136,11 +136,15 @@
                   <fa-icon [icon]="faPlus"></fa-icon>
                 </button>
 
-                <span class="m-2">{{ node.title }}</span>
+                <span style="font-size: 35px" class="m-2">{{
+                  node.title
+                }}</span>
                 <span class="button">
                   <button
                     class="btn btn-secondary btn-sm ms-2"
-                    (click)="openAddTextFieldForLevel2(node.id, 'Save')"
+                    (click)="
+                      openAddTextFieldForLevel2(node.id, 'Save', node.title)
+                    "
                   >
                     + Add Rule
                   </button>
@@ -152,7 +156,9 @@
                 <button
                   style="border: none"
                   class="ms-2 btn btn-lg"
-                  (click)="openAddTextFieldForLevel2(node.id, 'Update')"
+                  (click)="
+                    openAddTextFieldForLevel2(node.id, 'Update', node.title)
+                  "
                 >
                   <fa-icon [icon]="faPenIcon"></fa-icon>
                 </button>
@@ -177,7 +183,7 @@
                     </button>
                     <button
                       class="btn btn-danger btn-lg ms-2"
-                      (click)="cancel1()"
+                      (click)="cancel2()"
                     >
                       Cancel
                     </button>
@@ -202,7 +208,9 @@
                         <fa-icon [icon]="faPlus"></fa-icon>
                       </button>
 
-                      <span class="m-2">{{ node.title }}</span>
+                      <span style="font-size: 35px" class="m-2">{{
+                        node.title
+                      }}</span>
 
                       <span class="button">
                         <button class="btn btn-secondary btn-sm ms-2">
