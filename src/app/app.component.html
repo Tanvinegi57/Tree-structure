@@ -11,11 +11,13 @@
         border-radius: 50px;
         color: blue;
         padding: 5px 10px;
+        margin-top: -13px;
       "
       (click)="showRootLevel(data.id)"
     >
       <fa-icon [icon]="faPlus"></fa-icon>
     </button>
+
     <span>
       <span style="font-size: 35px" class="ms-2">{{ data.title }}</span>
     </span>
@@ -53,7 +55,7 @@
         >
           {{ onAction }}
         </button>
-        <button class="btn btn-danger btn-lg ms-2" (click)="cancel()">
+        <button class="btn btn-danger btn-lg ms-2" (click)="cancel(1)">
           Cancel
         </button>
       </form>
@@ -113,7 +115,7 @@
               >
                 {{ onAction }}
               </button>
-              <button class="btn btn-danger btn-lg ms-2" (click)="cancel1()">
+              <button class="btn btn-danger btn-lg ms-2" (click)="cancel(2)">
                 Cancel
               </button>
             </form>
@@ -183,7 +185,7 @@
                     </button>
                     <button
                       class="btn btn-danger btn-lg ms-2"
-                      (click)="cancel2()"
+                      (click)="cancel(3)"
                     >
                       Cancel
                     </button>

@@ -96,7 +96,6 @@ export class AppComponent {
         this.level5 = data.level3;
       }
     });
-    this.getRootData();
   }
 
   // ADD FUNCTIONALITY OF LEVEL-1
@@ -149,15 +148,16 @@ export class AppComponent {
     }
   }
 
-  cancel() {
-    this.textField1 = !this.textField1;
+  cancel(num: number) {
+    if (num === 1) {
+      this.textField1 = !this.textField1;
+    } else if (num === 2) {
+      this.textField2 = !this.textField2;
+    } else if (num === 3) {
+      this.textField3 = !this.textField3;
+    }
   }
-  cancel1() {
-    this.textField2 = !this.textField2;
-  }
-  cancel2() {
-    this.textField3 = !this.textField3;
-  }
+
   // add level-2 data and edit level-1 data
 
   openAddTextFieldForLevel1(id: number, action: string, title: string) {
